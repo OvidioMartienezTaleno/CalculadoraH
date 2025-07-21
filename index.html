@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <link rel="stylesheet" href="resources/styles.css">
+
+</head>
+<body>
+    <div class="header">
+        <h1>Calculadora de Hectáreas</h1>
+        <p>Haz clic en el mapa para crear puntos y medir áreas • Mapas satelitales  • Geolocalización</p>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            
+            <div class="controls">
+                <div class="control-group">
+                    <h3>Ubicación</h3>
+                    <button class="btn btn-location" id="locationBtn" onclick="getCurrentLocation()">
+                        <span id="locationText">📍 Mi Ubicación</span>
+                    </button>
+                </div>
+                
+                <div class="control-group">
+                    <h3>Controles</h3>
+                    <div class="button-group">
+                        <button class="btn btn-danger" onclick="clearAll()">Limpiar</button>
+                        <button class="btn btn-success" onclick="undoLastPoint()">Deshacer</button>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3>Puntos (<span id="pointCount">0</span>)</h3>
+                    <div class="coordinates-list" id="coordinatesList"></div>
+                </div>
+            </div>
+            
+            <div class="results">
+                <h3>📐 Resultados</h3>
+                <div class="result-item">
+                    <span class="result-label">Área (Hectáreas):</span>
+                    <span class="result-value area-highlight" id="areaHectares">0.00 ha</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Área (m²):</span>
+                    <span class="result-value" id="areaSquareMeters">0.00 m²</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Perímetro:</span>
+                    <span class="result-value" id="perimeter">0.00 m</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div class="location-controls">
+                <button class="location-btn" onclick="getCurrentLocation()" title="Mi ubicación">
+                    📍
+                </button>
+                <button class="location-btn" onclick="centerOnCostaRica()" title="Centrar en Costa Rica">
+                    🇨🇷
+                </button>
+            </div>
+            <div id="map"></div>
+        </div>
+        
+        <button class="mobile-toggle" onclick="toggleSidebar()" id="toggleBtn">
+            ☰
+        </button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="resources/scripts.js"></script>
+</body>
+</html>
